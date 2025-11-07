@@ -9,6 +9,7 @@
 
 #include <esp_bt.h>
 #include <esp_gap_ble_api.h>
+#include <queue>
 
 #include "encoder.h"
 

@@ -51,15 +51,18 @@ class BleLeCommands {
     return BleLeCommand(8, val);
   }
   static BleLeCommand temp(float t) {
-    uint32_t i = 3000 + (1 - t) * (6400 - 3000);
+    // t is 0.0 for coldest (5700K) and 1.0 for warmest (2700K)
+    uint32_t i = 2700 + (1 - t) * (5700 - 2700);
     std::vector<uint8_t> val;
-    if (i > 4700) {
+    // The midpoint of 2700K and 5700K is 4200K
+    // The range from midpoint to edge is 1500K for both directions.
+    if (i > 4200) {
       val.push_back(-1);
-      val.push_back(static_cast<uint8_t>(((6400 - i) * 128) / 1700.0));
+      val.push_back(static_cast<uint8_t>(((5700 - i) * 128) / 1500.0));
       return BleLeCommand(13, val);
     }
 
-    val.push_back(static_cast<uint8_t>(((i - 3000) * 128) / 1700.0));
+    val.push_back(static_cast<uint8_t>(((i - 2700) * 128) / 1500.0));
     val.push_back(-1);
     return BleLeCommand(13, val);
   }

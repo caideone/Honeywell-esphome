@@ -42,8 +42,8 @@ class BleLeLight : public light::LightOutput,
   light::LightTraits get_traits() override {
     auto traits = light::LightTraits();
     traits.set_supported_color_modes({light::ColorMode::COLOR_TEMPERATURE});
-    traits.set_min_mireds(156.25);
-    traits.set_max_mireds(333.33);
+    traits.set_min_mireds(175.4);
+    traits.set_max_mireds(370.3);
     return traits;
   }
   void setup_state(light::LightState *state) override { this->state_ = state; }
